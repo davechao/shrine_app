@@ -68,7 +68,10 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 18.0 / 11.0,
-                child: Image.asset('assets/${product.id}-0.jpg'),
+                child: Image.asset(
+                  'assets/${product.id}-0.jpg',
+                  fit: BoxFit.fitWidth,
+                ),
               ),
               Expanded(
                 child: Padding(
