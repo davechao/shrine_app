@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../model/product.dart';
 
 class ProductCard extends StatelessWidget {
@@ -18,8 +19,7 @@ class ProductCard extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     final imageWidget = Image.asset(
-      product.assetName,
-      package: product.assetPackage,
+      'assets/${product.id}-0.jpg',
       fit: BoxFit.cover,
     );
 
