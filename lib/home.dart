@@ -43,6 +43,8 @@ class HomePage extends StatelessWidget {
   Widget _buildGridView(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
+      mainAxisSpacing: 8.0,
+      crossAxisSpacing: 4.0,
       padding: EdgeInsets.all(16.0),
       childAspectRatio: 8.0 / 9.0,
       children: _buildCards(context), // Replace
@@ -62,40 +64,41 @@ class HomePage extends StatelessWidget {
     return products.map(
       (product) {
         return Card(
-          clipBehavior: Clip.antiAlias,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 18.0 / 11.0,
-                child: Image.asset(
-                  'assets/${product.id}-0.jpg',
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        product.name,
-                        style: theme.textTheme.title,
-                        maxLines: 1,
-                      ),
-                      SizedBox(height: 8.0),
-                      Text(
-                        formatter.format(product.price),
-                        style: theme.textTheme.body2,
-                      ),
-                    ],
+            clipBehavior: Clip.antiAlias,
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  AspectRatio(
+                    aspectRatio: 18.0 / 11.0,
+                    child: Image.asset(
+                      'assets/${product.id}-0.jpg',
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
-                ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            product.name,
+                            style: theme.textTheme.title,
+                            maxLines: 1,
+                          ),
+                          SizedBox(height: 8.0),
+                          Text(
+                            formatter.format(product.price),
+                            style: theme.textTheme.body2,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        );
+            ));
       },
     ).toList();
   }
