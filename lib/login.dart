@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLogo() {
     return Column(
       children: <Widget>[
-        Image.asset('assets/diamond.png'),
+        Image.asset('assets/icons/diamond.png'),
         SizedBox(height: 16.0),
         Text('SHRINE'),
       ],
