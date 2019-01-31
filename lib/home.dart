@@ -51,54 +51,59 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  List<Card> _buildCards(BuildContext context) {
-    List<Product> products = ProductsRepository.loadProducts(Category.all);
-    if (products == null || products.isEmpty) {
-      return const <Card>[];
-    }
+  Widget _buildCardImage(Product product) {
+    return AspectRatio(
+      aspectRatio: 18.0 / 11.0,
+      child: Image.asset(
+        'assets/${product.id}-0.jpg',
+        fit: BoxFit.fitWidth,
+      ),
+    );
+  }
 
+  Widget _buildCardInfo(BuildContext context, Product product) {
     final ThemeData theme = Theme.of(context);
     final NumberFormat formatter = NumberFormat.simpleCurrency(
         locale: Localizations.localeOf(context).toString());
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              product.name,
+              style: theme.textTheme.title,
+              maxLines: 1,
+            ),
+            SizedBox(height: 8.0),
+            Text(
+              formatter.format(product.price),
+              style: theme.textTheme.body2,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
+  List<Card> _buildCards(BuildContext context) {
+    List<Product> products = ProductsRepository.loadProducts(Category.all);
+    if (products == null || products.isEmpty) return const <Card>[];
     return products.map(
       (product) {
         return Card(
-            clipBehavior: Clip.antiAlias,
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  AspectRatio(
-                    aspectRatio: 18.0 / 11.0,
-                    child: Image.asset(
-                      'assets/${product.id}-0.jpg',
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            product.name,
-                            style: theme.textTheme.title,
-                            maxLines: 1,
-                          ),
-                          SizedBox(height: 8.0),
-                          Text(
-                            formatter.format(product.price),
-                            style: theme.textTheme.body2,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ));
+          clipBehavior: Clip.antiAlias,
+          child: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildCardImage(product),
+                _buildCardInfo(context, product),
+              ],
+            ),
+          ),
+        );
       },
     ).toList();
   }
