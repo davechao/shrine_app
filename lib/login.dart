@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shrine_app/color/colors.dart';
+import 'package:shrine_app/widget/accent_color_override.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -22,23 +24,27 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildUserNameTextField() {
-    return TextField(
-      controller: _usernameController,
-      decoration: InputDecoration(
-        filled: true,
-        labelText: 'Username',
+    return AccentColorOverride(
+      color: kShrineBrown900,
+      child: TextField(
+        controller: _usernameController,
+        decoration: InputDecoration(
+          labelText: 'Username',
+        ),
       ),
     );
   }
 
   Widget _buildPasswordTextField() {
-    return TextField(
-      controller: _passwordController,
-      decoration: InputDecoration(
-        filled: true,
-        labelText: 'Password',
+    return AccentColorOverride(
+      color: kShrineBrown900,
+      child: TextField(
+        controller: _passwordController,
+        decoration: InputDecoration(
+          labelText: 'Password',
+        ),
+        obscureText: true,
       ),
-      obscureText: true,
     );
   }
 
@@ -46,13 +52,24 @@ class _LoginPageState extends State<LoginPage> {
     return FlatButton(
       child: Text('CANCEL'),
       onPressed: _clearData,
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(7.0),
+        ),
+      ),
     );
   }
 
   Widget _buildNextButton() {
     return RaisedButton(
       child: Text('NEXT'),
+      elevation: 8.0,
       onPressed: _goHomePage,
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(7.0),
+        ),
+      ),
     );
   }
 
