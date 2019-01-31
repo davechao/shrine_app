@@ -16,7 +16,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildLogo() {
     return Column(
       children: <Widget>[
-        Image.asset('assets/icons/diamond.png'),
+        Image.asset(
+          'assets/icons/diamond.png',
+          color: kShrineBackgroundWhite,
+        ),
         SizedBox(height: 16.0),
         Text('SHRINE'),
       ],
@@ -25,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildUserNameTextField() {
     return AccentColorOverride(
-      color: kShrineBrown900,
+      color: kShrineAltYellow,
       child: TextField(
         controller: _usernameController,
         decoration: InputDecoration(
@@ -37,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildPasswordTextField() {
     return AccentColorOverride(
-      color: kShrineBrown900,
+      color: kShrineAltYellow,
       child: TextField(
         controller: _passwordController,
         decoration: InputDecoration(
@@ -62,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildNextButton() {
     return RaisedButton(
+      color: kShrineAltYellow,
       child: Text('NEXT'),
       elevation: 8.0,
       onPressed: _goHomePage,
